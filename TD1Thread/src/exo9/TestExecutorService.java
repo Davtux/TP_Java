@@ -15,7 +15,8 @@ public class TestExecutorService {
 		executorService.submit(new Task());
 		executorService.submit(new Task());
 		
-		// Si on soumet trois instances de la classe Task au lieu de deux, les deux premi�res instances vont s'ex�cuter
+		// Si on soumet trois instances de la classe Task au lieu de deux, 
+		// les deux premi�res instances vont s'ex�cuter
 		// tandis que la troisi�me va attendre que l'une des deux soit finie pour s'ex�cuter
 		executorService.submit(new Task());
 		
