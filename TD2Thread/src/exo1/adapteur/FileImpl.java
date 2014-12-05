@@ -12,7 +12,8 @@ public class FileImpl<E> implements File<E> {
 
 	@Override
 	public E tete() {
-		// TODO Auto-generated method stub
+		if(!this.estVide())
+			return this.get(0);
 		return null;
 	}
 
