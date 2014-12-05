@@ -1,5 +1,43 @@
 package exo1.adapteur;
 
-public class FileImpl implements File {
+import java.util.ArrayList;
+import java.util.List;
+
+public class FileImpl<E> implements File<E> {
+	private final List<E> liste;
+	
+	public FileImpl() {
+		this.liste = new ArrayList<E>();
+	}
+
+	@Override
+	public E tete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insererQueue(E e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public E retirerTete() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int longueur() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean estVide() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
