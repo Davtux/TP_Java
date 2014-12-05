@@ -1,9 +1,11 @@
 package exo3.composite;
 
+import exo3.visiteur.Visiteur;
+
 public class Fichier extends ComposantSyteme {
 	private final String nom;
 	private final int taille;
-	
+
 	/**
 	 * Constructeur
 	 */
@@ -11,7 +13,7 @@ public class Fichier extends ComposantSyteme {
 		this.nom = nom;
 		this.taille = taille;
 	}
-	
+
 	@Override
 	/**
 	 * Retourne le nom de ce composant système
@@ -20,7 +22,7 @@ public class Fichier extends ComposantSyteme {
 	public String getNom() {
 		return this.nom;
 	}
-	
+
 	@Override
 	/**
 	 * Retourne la taille de ce composant système
@@ -40,6 +42,13 @@ public class Fichier extends ComposantSyteme {
 	public String toString() {
 		return "Fichier [nom=" + nom + ", taille=" + taille + "]";
 	}
-	
-	
+
+	@Override
+	public void acceptVisiteur(Visiteur visiteur) {
+		visiteur.beforeVisit(this);
+		visiteur.visit(this);
+		visiteur.afterVisit(this);
+
+	}
+
 }

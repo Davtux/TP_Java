@@ -51,7 +51,7 @@ public class Statistique implements Observateur {
 		for (int i = 1; i < donnees.size(); i++) {
 			cumulTemp = cumulTemp + donnees.get(i);
 		}
-		return cumulTemp;
+		return cumulTemp/donnees.size();
 	}
 
 	@Override

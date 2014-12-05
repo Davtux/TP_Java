@@ -5,10 +5,14 @@ import exo3.composite.Fichier;
 import exo3.composite.Repertoire;
 
 public class HierarchiqueVisiteur implements Visiteur {
+
+	private int niveau;
+
 	/**
 	 * Constructeur par défaut
 	 */
 	public HierarchiqueVisiteur() {
+		this.niveau = 0;
 	}
 
 	@Override
@@ -16,7 +20,7 @@ public class HierarchiqueVisiteur implements Visiteur {
 	 * 
 	 */
 	public void visit(Fichier fichier) {
-		System.out.println("Composant visité : "+fichier.getNom());
+		System.out.println(fichier.getNom());
 	}
 
 	@Override
@@ -24,7 +28,7 @@ public class HierarchiqueVisiteur implements Visiteur {
 	 * 
 	 */
 	public void visit(Repertoire repertoire) {
-		System.out.println("Composant visité : "+repertoire.getNom());		
+		System.out.println(repertoire.getNom());
 	}
 
 	@Override
@@ -32,8 +36,14 @@ public class HierarchiqueVisiteur implements Visiteur {
 	 * 
 	 */
 	public void beforeVisit(ComposantSyteme composantSysteme) {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i< niveau-1; i++){
+			System.out.print("      ");
+		}
+		if(niveau != 0){
+			System.out.print("\\−−−−−");
+		}
+		this.niveau++;
+
 	}
 
 	@Override
@@ -41,8 +51,7 @@ public class HierarchiqueVisiteur implements Visiteur {
 	 * 
 	 */
 	public void afterVisit(ComposantSyteme composantSysteme) {
-		// TODO Auto-generated method stub
-		
+		this.niveau--;
 	}
 
 }

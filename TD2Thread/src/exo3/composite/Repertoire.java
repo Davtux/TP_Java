@@ -1,7 +1,10 @@
 package exo3.composite;
 
+import java.beans.Visibility;
 import java.util.ArrayList;
 import java.util.List;
+
+import exo3.visiteur.Visiteur;
 
 public class Repertoire extends ComposantSyteme {
 	private final String nom;
@@ -89,6 +92,14 @@ public class Repertoire extends ComposantSyteme {
 		return "Repertoire [nom=" + nom + ", listComposantSysteme="
 				+ listComposantSysteme + "]";
 	}
-	
+
+	public void acceptVisiteur(Visiteur visiteur) {
+		visiteur.beforeVisit(this);
+		visiteur.visit(this);
+		for (ComposantSyteme composant : listComposantSysteme) {
+			composant.acceptVisiteur(visiteur);
+		}
+		visiteur.afterVisit(this);
+	}
 
 }

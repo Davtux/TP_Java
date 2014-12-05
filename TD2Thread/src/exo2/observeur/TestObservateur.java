@@ -10,6 +10,8 @@ public class TestObservateur {
 		final ExecutorService executorService = Executors
 				.newSingleThreadExecutor();
 
+		// On va démarrer le capteur à l'aide d'un executorService
+
 		Observateur meteo = new Meteo();
 		Observateur grapheur = new Grapheur();
 		Observateur statistique = new Statistique();
@@ -19,6 +21,12 @@ public class TestObservateur {
 		capteur.ajouterObservateur(statistique);
 
 		executorService.submit(capteur);
+		try {
+			Thread.sleep(10000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		executorService.shutdownNow();
 
 	}
 }

@@ -51,14 +51,15 @@ public class Capteur implements Sujet, Runnable {
 	public void run() {
 		try {
 			while (!Thread.currentThread().isInterrupted()) {
-				Thread.sleep(5000L);
+
 				donnee = new Donnee(ThreadLocalRandom.current().nextDouble(-30,
 						40), ThreadLocalRandom.current().nextDouble(0, 100),
 						ThreadLocalRandom.current().nextDouble(800, 1200));
 				this.notifierObservateurs();
+				Thread.sleep(2000L);
 			}
 		} catch (InterruptedException ie) {
-			System.out.println("Erreur du run");
+			System.out.println("Arrêt du run");
 
 		}
 	}
