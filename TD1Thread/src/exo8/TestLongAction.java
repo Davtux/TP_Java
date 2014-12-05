@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.SwingWorker;
 
 @SuppressWarnings("serial")
 public class TestLongAction extends JFrame {
@@ -18,7 +19,23 @@ public class TestLongAction extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new LongAction().traitementLong();
+				// Solution 1 : Faire effectuer la méthode traitementLong() par un autre Thread
+				/*new Thread(new Runnable() {
+					public void run() {
+						new LongAction().traitementLong();
+					}
+				}).start();*/
+				
+				// Solution 2 : Utiliser un objet de type SwingWorker
+				SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+
+					@Override
+					protected Void doInBackground() throws Exception {
+						new LongAction().traitementLong();
+						return null;
+					}
+				};
+				worker.execute();
 			}
 
 		});
@@ -36,10 +53,7 @@ public class TestLongAction extends JFrame {
 		// l'affichage du bouton n'est pas actualisé, il ne se fait qu'à la fin de
 		// la méthode traitementLong()
 		
-		// Solution 1 : Faire effectuer la méthode traitementLong() par un autre Thread
-		// Solution 2 : Utiliser la méthode statique invokeLater() de la classe SwingUtilities en lui
-		//	passant en paramètre une classe réalisant Runnable et exécutant la méthode traitementLong()
-		//	dans sa méthode run()
+		
 	}
 
 }
