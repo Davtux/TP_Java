@@ -5,7 +5,7 @@ public class Fichier extends ComposantSyteme {
 	private final int taille;
 	
 	/**
-	 * 
+	 * Constructeur
 	 */
 	public Fichier(String nom, int taille) {
 		this.nom = nom;
@@ -14,25 +14,28 @@ public class Fichier extends ComposantSyteme {
 	
 	@Override
 	/**
-	 * 
+	 * Retourne le nom de ce composant système
+	 * @return une chaîne contenant le nom du composant
 	 */
-	public String getNom() throws UnsupportedOperationException {
-		// TODO Auto-generated method stub
-		return super.getNom();
+	public String getNom() {
+		return this.nom;
 	}
 	
 	@Override
 	/**
-	 * 
+	 * Retourne la taille de ce composant système
+	 * @return un entier positif
+	 * @throws UnsupportedOperationException
 	 */
 	public int getTaille() throws UnsupportedOperationException {
-		// TODO Auto-generated method stub
-		return super.getTaille();
+		return this.taille;
 	}
 
 	@Override
-	/**
+	/*
+	 * (non-Javadoc)
 	 * 
+	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return "Fichier [nom=" + nom + ", taille=" + taille + "]";

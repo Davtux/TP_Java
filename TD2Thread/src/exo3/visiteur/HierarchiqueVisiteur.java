@@ -6,10 +6,9 @@ import exo3.composite.Repertoire;
 
 public class HierarchiqueVisiteur implements Visiteur {
 	/**
-	 * 
+	 * Constructeur par défaut
 	 */
 	public HierarchiqueVisiteur() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -17,8 +16,7 @@ public class HierarchiqueVisiteur implements Visiteur {
 	 * 
 	 */
 	public void visit(Fichier fichier) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Composant visité : "+fichier.getNom());
 	}
 
 	@Override
@@ -26,8 +24,7 @@ public class HierarchiqueVisiteur implements Visiteur {
 	 * 
 	 */
 	public void visit(Repertoire repertoire) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Composant visité : "+repertoire.getNom());		
 	}
 
 	@Override

@@ -6,14 +6,14 @@ import exo3.composite.Repertoire;
 
 public interface Visiteur {
 	/**
-	 * 
-	 * @param fichier
+	 * Méthode qui visite un fichier
+	 * @param fichier : le fichier à visiter
 	 */
 	void visit(Fichier fichier);
 	
 	/**
-	 * 
-	 * @param repertoire
+	 * Méthode qui visite un répertoire
+	 * @param repertoire : le répertoire à visiter
 	 */
 	void visit(Repertoire repertoire);
 	

@@ -2,8 +2,8 @@ package exo3.composite;
 
 public abstract class ComposantSyteme {
 	/**
-	 * 
-	 * @return
+	 * Retourne le nom de ce composant système
+	 * @return une chaîne contenant le nom du composant
 	 * @throws UnsupportedOperationException
 	 */
 	public String getNom() throws UnsupportedOperationException{
@@ -11,8 +11,8 @@ public abstract class ComposantSyteme {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Retourne la taille de ce composant système
+	 * @return un entier positif
 	 * @throws UnsupportedOperationException
 	 */
 	public int getTaille() throws UnsupportedOperationException{
@@ -20,7 +20,7 @@ public abstract class ComposantSyteme {
 	}
 	
 	/**
-	 * 
+	 * Ajout d'un composant système à ce composant
 	 * @param composant
 	 * @throws UnsupportedOperationException
 	 */
@@ -29,7 +29,7 @@ public abstract class ComposantSyteme {
 	}
 	
 	/**
-	 * 
+	 * Enlever un composant système de ce composant
 	 * @param composant
 	 * @throws UnsupportedOperationException
 	 */
@@ -38,9 +38,9 @@ public abstract class ComposantSyteme {
 	}
 	
 	/**
-	 * 
-	 * @param index
-	 * @return
+	 * Récupère un composant système contenu dans ce composant
+	 * @param index l'indice du composant souhaité dans la liste dans laquelle il est contenu
+	 * @return l'élément recherché
 	 * @throws UnsupportedOperationException
 	 */
 	public ComposantSyteme getComposantSysteme(int index) throws UnsupportedOperationException{
