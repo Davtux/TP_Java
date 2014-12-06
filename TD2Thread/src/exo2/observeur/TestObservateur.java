@@ -22,7 +22,7 @@ public class TestObservateur {
 
 		executorService.submit(capteur);
 		try {
-			Thread.sleep(10000L);
+			Thread.sleep(10_000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

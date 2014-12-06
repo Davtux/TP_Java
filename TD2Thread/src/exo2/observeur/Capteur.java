@@ -56,7 +56,7 @@ public class Capteur implements Sujet, Runnable {
 						40), ThreadLocalRandom.current().nextDouble(0, 100),
 						ThreadLocalRandom.current().nextDouble(800, 1200));
 				this.notifierObservateurs();
-				Thread.sleep(2000L);
+				Thread.sleep(500L);
 			}
 		} catch (InterruptedException ie) {
 			System.out.println("Arrêt du run");

@@ -59,6 +59,11 @@ public abstract class ComposantSyteme {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Méthode déterminant le comportement de ce composant vis à vis d'un visiteur 
+	 * @param visiteur : instance d'une classe implémentant {@link Visiteur} 
+	 * @throws UnsupportedOperationException
+	 */
 	public void acceptVisiteur(Visiteur visiteur)
 			throws UnsupportedOperationException {
 		throw new UnsupportedOperationException();

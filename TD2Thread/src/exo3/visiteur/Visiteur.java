@@ -4,6 +4,11 @@ import exo3.composite.ComposantSyteme;
 import exo3.composite.Fichier;
 import exo3.composite.Repertoire;
 
+/**
+ * 
+ * @author Barrat-Leroy
+ *
+ */
 public interface Visiteur {
 	/**
 	 * Méthode qui visite un fichier
@@ -18,14 +23,14 @@ public interface Visiteur {
 	void visit(Repertoire repertoire);
 	
 	/**
-	 * 
-	 * @param composantSysteme
+	 * Méthode à appeler avant la visite d'un composant système
+	 * @param composantSysteme : le composant visité
 	 */
 	void beforeVisit(ComposantSyteme composantSysteme);
 	
 	/**
-	 * 
-	 * @param composantSysteme
+	 * Méthode à appeler après la visite d'un composant système
+	 * @param composantSysteme : le composant visité
 	 */
 	void afterVisit(ComposantSyteme composantSysteme);
 	

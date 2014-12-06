@@ -44,9 +44,18 @@ public class Fichier extends ComposantSyteme {
 	}
 
 	@Override
+	/**
+	 * Méthode déterminant le comportement de ce composant vis à vis d'un visiteur 
+	 * @param visiteur : instance d'une classe implémentant {@link Visiteur} 
+	 */
 	public void acceptVisiteur(Visiteur visiteur) {
+		// Avant la visite de ce composant
 		visiteur.beforeVisit(this);
+
+		// Visite de ce composant
 		visiteur.visit(this);
+
+		// Après la visite de ce composant
 		visiteur.afterVisit(this);
 
 	}
