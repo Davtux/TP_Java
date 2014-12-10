@@ -1,6 +1,5 @@
 package exo3.composite;
 
-import java.beans.Visibility;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,12 +92,23 @@ public class Repertoire extends ComposantSyteme {
 				+ listComposantSysteme + "]";
 	}
 
+	/**
+	 * Méthode déterminant le comportement de ce composant vis à vis d'un visiteur 
+	 * @param visiteur : instance d'une classe implémentant {@link Visiteur} 
+	 */
 	public void acceptVisiteur(Visiteur visiteur) {
+		// Avant la visite de ce composant
 		visiteur.beforeVisit(this);
+		
+		// Visite de ce composant
 		visiteur.visit(this);
+		
+		// On propage ensuite la visite vers les composants enfants
 		for (ComposantSyteme composant : listComposantSysteme) {
 			composant.acceptVisiteur(visiteur);
 		}
+		
+		// Après la visite de ce composant
 		visiteur.afterVisit(this);
 	}
 
