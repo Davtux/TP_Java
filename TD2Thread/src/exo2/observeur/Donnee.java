@@ -33,6 +33,7 @@ public class Donnee {
 
 	/**
 	 * R�cup�re la temp�rature (� C).
+	 * 
 	 * @return la temp�rature (� C).
 	 */
 	public double getTemperature() {
@@ -41,7 +42,8 @@ public class Donnee {
 
 	/**
 	 * R�cup�re le niveau de pr�cipitations (mm).
-	 * @return  le niveau de pr�cipitations (mm).
+	 * 
+	 * @return le niveau de pr�cipitations (mm).
 	 */
 	public double getPrecipitation() {
 		return precipitation;
@@ -49,7 +51,8 @@ public class Donnee {
 
 	/**
 	 * R�cup�re la pression atmosph�rique (hPa).
-	 * @return  la pression atmosph�rique (hPa).
+	 * 
+	 * @return la pression atmosph�rique (hPa).
 	 */
 	public double getPression() {
 		return pression;

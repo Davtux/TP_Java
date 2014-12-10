@@ -9,34 +9,25 @@ public class Capteur implements Sujet, Runnable {
 	private Donnee donnee;
 
 	/**
-	 * 
+	 * Constructeur de Capteur
 	 */
 	public Capteur() {
 		liste = new ArrayList<Observateur>();
 	}
 
 	@Override
-	/**
-	 * 
-	 */
 	public void ajouterObservateur(Observateur observateur) {
 		this.liste.add(observateur);
 
 	}
 
 	@Override
-	/**
-	 * 
-	 */
 	public void retirerObservateur(Observateur observateur) {
 		this.liste.remove(observateur);
 
 	}
 
 	@Override
-	/**
-	 * 
-	 */
 	public void notifierObservateurs() {
 		for (Observateur obs : this.liste) {
 			obs.modifier(this.donnee);
@@ -45,9 +36,6 @@ public class Capteur implements Sujet, Runnable {
 	}
 
 	@Override
-	/**
-	 * 
-	 */
 	public void run() {
 		try {
 			while (!Thread.currentThread().isInterrupted()) {
