@@ -2,12 +2,12 @@ package fr.unilim.info;
 
 public class Animal {
 	private String espece;
-	private boolean isCarnivore;
+	private boolean carnivore;
 	private float poids;
 
 	public Animal(String espece, boolean isCarnivore, float poids) {
 		this.espece = espece;
-		this.isCarnivore = isCarnivore;
+		this.carnivore = isCarnivore;
 		this.poids = poids;
 	}
 
@@ -16,14 +16,14 @@ public class Animal {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((espece == null) ? 0 : espece.hashCode());
-		result = prime * result + (isCarnivore ? 1231 : 1237);
+		result = prime * result + (carnivore ? 1231 : 1237);
 		result = prime * result + Float.floatToIntBits(poids);
 		return result;
 	}
 
 	@Override
 	public String toString() {
-		return "espece=[" + espece + "], isCarnivore=[" + isCarnivore
+		return "espece=[" + espece + "], isCarnivore=[" + carnivore
 				+ "], poids=[" + poids + "]";
 	}
 
@@ -41,7 +41,7 @@ public class Animal {
 				return false;
 		} else if (!espece.equals(other.espece))
 			return false;
-		if (isCarnivore != other.isCarnivore)
+		if (carnivore != other.carnivore)
 			return false;
 		if (Float.floatToIntBits(poids) != Float.floatToIntBits(other.poids))
 			return false;
@@ -57,11 +57,11 @@ public class Animal {
 	}
 
 	public boolean isCarnivore() {
-		return isCarnivore;
+		return carnivore;
 	}
 
 	public void setCarnivore(boolean isCarnivore) {
-		this.isCarnivore = isCarnivore;
+		this.carnivore = isCarnivore;
 	}
 
 	public float getPoids() {
@@ -70,6 +70,23 @@ public class Animal {
 
 	public void setPoids(float poids) {
 		this.poids = poids;
+	}
+
+	public boolean necessiteSoin(SoinEnum typeSoin) {
+		if (typeSoin.equals(SoinEnum.DENTS) && this.isCarnivore()) {
+			return true;
+		}
+		if (typeSoin.equals(SoinEnum.PIEDS) && this.getPoids() > 200) {
+			return true;
+		}
+		return false;
+	}
+
+	public float calculerViandeHebdo() {
+		if (this.isCarnivore()) {
+			return this.getPoids() * 0.25f;
+		}
+		return 0.0f;
 	}
 
 }

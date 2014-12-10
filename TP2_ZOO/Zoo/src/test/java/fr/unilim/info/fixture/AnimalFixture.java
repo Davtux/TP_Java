@@ -1,6 +1,9 @@
-package fr.unilim.info;
+package fr.unilim.info.fixture;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import fr.unilim.info.Animal;
 
 public class AnimalFixture {
 	public static List<Animal> creerListeAnimaux(){

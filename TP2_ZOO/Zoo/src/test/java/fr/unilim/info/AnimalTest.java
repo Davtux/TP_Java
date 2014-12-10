@@ -145,6 +145,7 @@ public class AnimalTest {
 		assertEquals(true, result);
 
 	}
+
 	@Test
 	public void testEspeceAnimal1Null() {
 		System.out.println("Début du test : testEspeceAnimal1Null");
@@ -160,6 +161,7 @@ public class AnimalTest {
 		assertEquals(false, result);
 
 	}
+
 	@Test
 	public void testEspeceToSring() {
 		System.out.println("Début du test : test espèce toString");
