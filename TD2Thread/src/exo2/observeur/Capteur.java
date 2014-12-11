@@ -15,12 +15,22 @@ public class Capteur implements Sujet, Runnable {
 		liste = new ArrayList<Observateur>();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo2.observeur.Sujet#ajouterObservateur(exo2.observeur.Observateur)
+	 */
 	@Override
 	public void ajouterObservateur(Observateur observateur) {
 		this.liste.add(observateur);
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo2.observeur.Sujet#retirerObservateur(exo2.observeur.Observateur)
+	 */
 	@Override
 	public void retirerObservateur(Observateur observateur) {
 		this.liste.remove(observateur);

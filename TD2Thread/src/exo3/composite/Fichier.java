@@ -14,21 +14,22 @@ public class Fichier extends ComposantSyteme {
 		this.taille = taille;
 	}
 
-	@Override
-	/**
-	 * Retourne le nom de ce composant système
-	 * @return une chaîne contenant le nom du composant
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.composite.ComposantSyteme#getNom()
 	 */
+	@Override
 	public String getNom() {
 		return this.nom;
 	}
 
-	@Override
-	/**
-	 * Retourne la taille de ce composant système
-	 * @return un entier positif
-	 * @throws UnsupportedOperationException
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.composite.ComposantSyteme#getTaille()
 	 */
+	@Override
 	public int getTaille() throws UnsupportedOperationException {
 		return this.taille;
 	}
@@ -43,11 +44,13 @@ public class Fichier extends ComposantSyteme {
 		return "Fichier [nom=" + nom + ", taille=" + taille + "]";
 	}
 
-	@Override
-	/**
-	 * Méthode déterminant le comportement de ce composant vis à vis d'un visiteur 
-	 * @param visiteur : instance d'une classe implémentant {@link Visiteur} 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * exo3.composite.ComposantSyteme#acceptVisiteur(exo3.visiteur.Visiteur)
 	 */
+	@Override
 	public void acceptVisiteur(Visiteur visiteur) {
 		// Avant la visite de ce composant
 		visiteur.beforeVisit(this);

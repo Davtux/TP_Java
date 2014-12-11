@@ -20,12 +20,12 @@ public class Repertoire extends ComposantSyteme {
 		listComposantSysteme = new ArrayList<ComposantSyteme>();
 	}
 
-	@Override
-	/**
-	 * Retourne le nom de ce composant système
-	 * @return une chaîne contenant le nom du composant
-	 * @throws UnsupportedOperationException
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.composite.ComposantSyteme#getNom()
 	 */
+	@Override
 	public String getNom() {
 		return this.nom;
 	}
@@ -48,35 +48,37 @@ public class Repertoire extends ComposantSyteme {
 		return somme;
 	}
 
-	@Override
-	/**
-	 * Ajout d'un composant système à ce répertoire
-	 * @param composant
-	 * @throws UnsupportedOperationException
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.composite.ComposantSyteme#addComposantSysteme(exo3.composite.
+	 * ComposantSyteme)
 	 */
+	@Override
 	public void addComposantSysteme(ComposantSyteme composant)
 			throws UnsupportedOperationException {
 		listComposantSysteme.add(composant);
 	}
 
-	@Override
-	/**
-	 * Enlever un composant système de ce composant
-	 * @param composant
-	 * @throws UnsupportedOperationException
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * exo3.composite.ComposantSyteme#removeComposantSysteme(exo3.composite.
+	 * ComposantSyteme)
 	 */
+	@Override
 	public void removeComposantSysteme(ComposantSyteme composant)
 			throws UnsupportedOperationException {
 		listComposantSysteme.remove(composant);
 	}
 
-	@Override
-	/**
-	 * Récupère un composant système contenu dans ce composant
-	 * @param index l'indice du composant souhaité dans la liste dans laquelle il est contenu
-	 * @return l'élément recherché
-	 * @throws UnsupportedOperationException
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.composite.ComposantSyteme#getComposantSysteme(int)
 	 */
+	@Override
 	public ComposantSyteme getComposantSysteme(int index) {
 		return listComposantSysteme.get(index);
 	}
@@ -93,21 +95,24 @@ public class Repertoire extends ComposantSyteme {
 	}
 
 	/**
-	 * Méthode déterminant le comportement de ce composant vis à vis d'un visiteur 
-	 * @param visiteur : instance d'une classe implémentant {@link Visiteur} 
+	 * Méthode déterminant le comportement de ce composant vis à vis d'un
+	 * visiteur
+	 * 
+	 * @param visiteur
+	 *            : instance d'une classe implémentant {@link Visiteur}
 	 */
 	public void acceptVisiteur(Visiteur visiteur) {
 		// Avant la visite de ce composant
 		visiteur.beforeVisit(this);
-		
+
 		// Visite de ce composant
 		visiteur.visit(this);
-		
+
 		// On propage ensuite la visite vers les composants enfants
 		for (ComposantSyteme composant : listComposantSysteme) {
 			composant.acceptVisiteur(visiteur);
 		}
-		
+
 		// Après la visite de ce composant
 		visiteur.afterVisit(this);
 	}

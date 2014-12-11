@@ -22,28 +22,32 @@ public class FichierVisiteur implements Visiteur {
 		chemin = new ArrayList<String>();
 	}
 
-	@Override
-	/**
-	 * Méthode qui affiche uniquement le nom du fichier visité
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.visiteur.Visiteur#visit(exo3.composite.Fichier)
 	 */
+	@Override
 	public void visit(Fichier fichier) {
 		System.out.println(fichier.getNom());
 	}
 
-	@Override
-	/**
-	 * Méthode ajoute le répertoire visité dans le chemin actuel
-	 * @param repertoire : le répertoire visité
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.visiteur.Visiteur#visit(exo3.composite.Repertoire)
 	 */
+	@Override
 	public void visit(Repertoire repertoire) {
 		chemin.add(repertoire.getNom());
 	}
 
-	@Override
-	/**
-	 * Affichage du chemin du composant parent à celui visité
-	 * @param composantSysteme : le composant visité
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.visiteur.Visiteur#beforeVisit(exo3.composite.ComposantSyteme)
 	 */
+	@Override
 	public void beforeVisit(ComposantSyteme composantSysteme) {
 		if (composantSysteme instanceof Fichier) {
 
@@ -53,11 +57,12 @@ public class FichierVisiteur implements Visiteur {
 		}
 	}
 
-	@Override
-	/**
-	 * Méthode qui enlève, si le composant en paramètre est un répertoire, le nom
-	 * de ce répertoire du chemin actuel
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo3.visiteur.Visiteur#afterVisit(exo3.composite.ComposantSyteme)
 	 */
+	@Override
 	public void afterVisit(ComposantSyteme composantSysteme) {
 		if (composantSysteme instanceof Repertoire) {
 			chemin.remove(chemin.size() - 1);

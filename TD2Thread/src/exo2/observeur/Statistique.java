@@ -50,6 +50,11 @@ public class Statistique implements Observateur {
 		return cumulTemp / donnees.size();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see exo2.observeur.Observateur#modifier(exo2.observeur.Donnee)
+	 */
 	@Override
 	public void modifier(Donnee donnee) {
 		donnees.add(donnee.getTemperature());
