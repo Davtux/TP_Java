@@ -1,5 +1,10 @@
 package fr.unilim.info;
 
+/**
+ * Classe représentant un animal défini par un nom d'espèce,
+ * son poids et s'il est carnivore ou non
+ *
+ */
 public class Animal {
 	private String espece;
 	private boolean carnivore;

@@ -5,15 +5,38 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
-
 import fr.unilim.info.fixture.AnimalFixture;
 
 public class ZooTest {
 
 	@Test
-	public void testAjoutAnimalNotNull() {
-		System.out.println("Début du test : testAjoutAnimalNotNull");
+	public void testEstVideZooVide() {
+		// Given
+		Zoo zoo1 = new Zoo();
+
+		// When
+		boolean resultat = zoo1.estVide();
+
+		// Then
+		assertTrue(resultat);
+	}
+
+	@Test
+	public void testEstVideZooNonVide() {
+		// Given
+		Zoo zoo1 = new Zoo();
+		zoo1.setAnimaux(AnimalFixture.creerListeAnimaux());
+
+		// When
+		boolean resultat = zoo1.estVide();
+
+		// Then
+		assertFalse(resultat);
+	}
+
+	@Test
+	public void testAjouterAnimalNonNull() {
+		System.out.println("Début du test : testAjouterAnimalNonNull");
 
 		// Given
 		Zoo zoo1 = new Zoo();
@@ -23,9 +46,11 @@ public class ZooTest {
 		// When
 		zoo1.ajouterAnimal(lion);
 		boolean result = zoo1.estVide();
+		List<Animal> liste = zoo1.getAnimaux();
 
 		// Then
 		assertEquals(false, result);
+		assertEquals(liste.get(0), lion);
 
 	}
 
@@ -61,19 +86,40 @@ public class ZooTest {
 	}
 
 	@Test
-	public void testRetirerAnimalNotNull() {
-		System.out.println("Début du test : testRetirerAnimalNotNull");
+	public void testRetirerAnimalNotNullFinalementVide() {
+		System.out
+				.println("Début du test : testRetirerAnimalNotNullFinalementVide");
 
 		// Given
 		Zoo zoo1 = new Zoo();
-		Animal animau = new Animal("Lapin", false, 125);
+		Animal animal = new Animal("Lapin", false, 125);
 		// When
-		zoo1.ajouterAnimal(animau);
-		zoo1.retirerAnimal(animau);
+		zoo1.ajouterAnimal(animal);
+		zoo1.retirerAnimal(animal);
 		boolean result = zoo1.estVide();
 
 		// Then
 		assertEquals(true, result);
+
+	}
+
+	@Test
+	public void testRetirerAnimalNotNullFinalementNonVide() {
+		System.out
+				.println("Début du test : testRetirerAnimalNotNullFinalementNonVide");
+
+		// Given
+		Zoo zoo1 = new Zoo();
+		Animal animal = new Animal("Lapin", false, 125), animal2 = new Animal(
+				"Lapin", false, 125);
+
+		// When
+		zoo1.ajouterAnimal(animal);
+		zoo1.ajouterAnimal(animal2);
+		zoo1.retirerAnimal(animal);
+
+		// Then
+		assertTrue(zoo1.getAnimaux().get(0) == animal2);
 
 	}
 
@@ -95,16 +141,17 @@ public class ZooTest {
 		System.out.println("Début du test : testToStringNotEmptyZoo");
 		// Given
 		Zoo zoo1 = new Zoo();
-		Animal animau = new Animal("Lapin", false, 125);
-		String resultatAttendu = animau.toString()+"\n";
+		Animal animal = new Animal("Lapin", false, 125);
+		String resultatAttendu = animal.toString() + "\n";
 
 		// When
-		zoo1.ajouterAnimal(animau);
+		zoo1.ajouterAnimal(animal);
 		String result = zoo1.toString();
 		// Then
 		assertEquals(resultatAttendu, result);
 
 	}
+
 	@Test
 	public void testCalculerViandeHebdoZooVide() {
 		System.out.println("Début du test : testCalculerViandeHebdoZooVide");
@@ -113,11 +160,12 @@ public class ZooTest {
 
 		// When
 		float result = zoo1.calculerViandeHebdo();
-		
+
 		// Then
 		assertTrue(0.0 == result);
 
 	}
+
 	@Test
 	public void testCalculerViandeHebdoZooNonVide() {
 		System.out.println("Début du test : testCalculerViandeHebdoZooNonVide");
@@ -127,7 +175,7 @@ public class ZooTest {
 
 		// When
 		float result = zoo1.calculerViandeHebdo();
-		
+
 		// Then
 		assertTrue(250.0 == result);
 
@@ -135,35 +183,66 @@ public class ZooTest {
 
 	@Test
 	public void testRecupererAnimauxASoignerZooVide() {
-		System.out.println("Début du test : testRecupererAnimauxASoignerZooVide");
+		System.out
+				.println("Début du test : testRecupererAnimauxASoignerZooVide");
 		// Given
 		Zoo zoo1 = new Zoo();
 
 		// When
 		List<Animal> result = zoo1.recupererAnimauxASoigner(SoinEnum.DENTS);
-		List<Animal> result2 =zoo1.recupererAnimauxASoigner(SoinEnum.PIEDS);
+		List<Animal> result2 = zoo1.recupererAnimauxASoigner(SoinEnum.PIEDS);
 		// Then
 		assertTrue(result.isEmpty());
 		assertTrue(result2.isEmpty());
 
 	}
-	
+
 	@Test
-	public void testRecupererAnimauxASoignerZooNonVide() {
-		System.out.println("Début du test : testRecupererAnimauxASoignerZooNonVide");
+	public void testRecupererAnimauxASoignerDentsZooNonVide() {
+		System.out
+				.println("Début du test : testRecupererAnimauxASoignerDentsZooNonVide");
 		// Given
 		Zoo zoo1 = new Zoo();
-		zoo1.setAnimaux(AnimalFixture.creerListeAnimaux());
+		List<Animal> listeAnimaux = AnimalFixture.creerListeAnimaux();
+		zoo1.setAnimaux(listeAnimaux);
 
 		// When
 		List<Animal> result = zoo1.recupererAnimauxASoigner(SoinEnum.DENTS);
-		List<Animal> result2 = zoo1.recupererAnimauxASoigner(SoinEnum.PIEDS);
-		
+
 		// Then
 		assertFalse(result.isEmpty());
-		assertFalse(result2.isEmpty());
+		assertTrue(result.contains(listeAnimaux.get(0)));
+		assertTrue(result.contains(listeAnimaux.get(2)));
+		assertTrue(result.contains(listeAnimaux.get(5)));
+
+		assertFalse(result.contains(listeAnimaux.get(1)));
+		assertFalse(result.contains(listeAnimaux.get(3)));
+		assertFalse(result.contains(listeAnimaux.get(4)));
 
 	}
-	
-	
+
+	@Test
+	public void testRecupererAnimauxASoignerPiedsZooNonVide() {
+		System.out
+				.println("Début du test : testRecupererAnimauxASoignerPiedsZooNonVide");
+		// Given
+		Zoo zoo1 = new Zoo();
+		List<Animal> listeAnimaux = AnimalFixture.creerListeAnimaux();
+		zoo1.setAnimaux(listeAnimaux);
+
+		// When
+		List<Animal> result = zoo1.recupererAnimauxASoigner(SoinEnum.PIEDS);
+
+		// Then
+		assertFalse(result.isEmpty());
+		assertTrue(result.contains(listeAnimaux.get(1)));
+		assertTrue(result.contains(listeAnimaux.get(5)));
+
+		assertFalse(result.contains(listeAnimaux.get(0)));
+		assertFalse(result.contains(listeAnimaux.get(2)));
+		assertFalse(result.contains(listeAnimaux.get(3)));
+		assertFalse(result.contains(listeAnimaux.get(4)));
+
+	}
+
 }
