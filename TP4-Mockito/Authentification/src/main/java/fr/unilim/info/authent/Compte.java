@@ -19,7 +19,6 @@ public class Compte {
 	/**
 	 * Constructeur avec arguments
 	 * @param identifiant
-	 * @param motDePasse
 	 */
 	public Compte(String identifiant) {
 		this.identifiant = identifiant;
@@ -43,7 +42,7 @@ public class Compte {
 	}
 
 	/**
-	 * Implémentation du hashCode
+	 * Implï¿½mentation du hashCode
 	 * 
 	 * @return la valeur du hashCode de l'objet
 	 */
@@ -54,17 +53,17 @@ public class Compte {
 
 		// Pour chaque attribut, on calcule le hashcode
 	    // que l'on ajoute au resultat
-		// apres l'avoir multiplié par le nombre "multiplieur"
+		// apres l'avoir multipliï¿½ par le nombre "multiplieur"
 		result = (multiplieur * result) + identifiant.hashCode();
 		return result;
 	}
 
 	/**
-	 * Implémentation du equals : on va comparer les identifiants de chaque compte
+	 * Implï¿½mentation du equals : on va comparer les identifiants de chaque compte
 	 * 
-	 * @param obj l'objet à comparer avec l'instance courante pour déterminer s'ils sont égaux
+	 * @param obj l'objet ï¿½ comparer avec l'instance courante pour dï¿½terminer s'ils sont ï¿½gaux
 	 * 
-	 * @return true si les deux objets sont égaux, false sinon
+	 * @return true si les deux objets sont ï¿½gaux, false sinon
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -83,6 +82,7 @@ public class Compte {
 	/**
 	 * Surcharge de la methode toString pour personnaliser l'affichage
 	 */
+	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("id=[").append(this.identifiant)
