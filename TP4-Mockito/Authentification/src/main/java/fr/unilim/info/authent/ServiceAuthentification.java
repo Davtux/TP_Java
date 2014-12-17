@@ -152,4 +152,10 @@ public class ServiceAuthentification {
 		return sessionsEnCours;
 	}
 
+	public void setSessionsEnCours(List<String> sessionsEnCours) {
+		this.sessionsEnCours = sessionsEnCours;
+	}
+	
+	
+
 }
