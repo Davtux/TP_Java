@@ -72,7 +72,7 @@ public class ServiceAuthentification {
 	public boolean desinscrire(String id) throws CompteInexistantException {
 
 		if (id == null)
-			throw new IllegalArgumentException("Id passé null");
+			throw new IllegalArgumentException("L'identifiant passé est null");
 
 		if (annuaire.recupererCompteParIdentifiant(id) == null)
 			throw new CompteInexistantException("Le compte n'existe pas");
@@ -118,7 +118,7 @@ public class ServiceAuthentification {
 	}
 
 	/**
-	 * V�rifie si un utilisateur est actuellement connect� au systeme
+	 * Vérifie si un utilisateur est actuellement connecté au systeme
 	 * 
 	 * @param id
 	 *            identifiant de l'utilisateur
@@ -129,7 +129,7 @@ public class ServiceAuthentification {
 	}
 
 	/**
-	 * Deconnecte la session d'un utilisateur
+	 * Déconnecte la session d'un utilisateur
 	 * 
 	 * @param id
 	 *            identifiant de l'utilisateur

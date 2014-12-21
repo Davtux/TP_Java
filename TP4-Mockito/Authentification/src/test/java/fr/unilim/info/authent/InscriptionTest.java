@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import fr.unilim.info.authent.exception.CompteDejaInscritException;
+import fr.unilim.info.authent.exception.CompteInexistantException;
 
 public class InscriptionTest {
 
@@ -22,13 +23,13 @@ public class InscriptionTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testInscririIdEtMDPNull() throws CompteDejaInscritException {
-		System.out.println("Début du test : testInscririIdEtMDPNull");
+		System.out.println("Début du test : testInscrireIdEtMDPNull");
 		// Given
 		this.annuaire = Mockito.mock(IAnnuaire.class);
-		ServiceAuthentification SA = new ServiceAuthentification(annuaire);
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
 
 		// When
-		SA.inscrire(null, null);
+		sa.inscrire(null, null);
 
 		// Then
 		fail();
@@ -37,13 +38,13 @@ public class InscriptionTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testInscririIdNull() throws CompteDejaInscritException {
-		System.out.println("Début du test : testInscririIdNull()");
+		System.out.println("Début du test : testInscrireIdNull()");
 		// Given
 		this.annuaire = Mockito.mock(IAnnuaire.class);
-		ServiceAuthentification SA = new ServiceAuthentification(annuaire);
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
 
 		// When
-		SA.inscrire(null, "MonBeauMotDePasse");
+		sa.inscrire(null, "MonBeauMotDePasse");
 
 		// Then
 		fail();
@@ -52,13 +53,13 @@ public class InscriptionTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testInscririMDPNull() throws CompteDejaInscritException {
-		System.out.println("Début du test : testInscririMDPNull()");
+		System.out.println("Début du test : testInscrireMDPNull()");
 		// Given
 		this.annuaire = Mockito.mock(IAnnuaire.class);
-		ServiceAuthentification SA = new ServiceAuthentification(annuaire);
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
 
 		// When
-		SA.inscrire("mon bel ID", null);
+		sa.inscrire("mon bel ID", null);
 
 		// Then
 		fail();
@@ -73,10 +74,10 @@ public class InscriptionTest {
 
 		Mockito.when(annuaire.recupererCompteParIdentifiant("Jacques"))
 				.thenReturn(new Compte("Jacques"));
-		ServiceAuthentification SA = new ServiceAuthentification(annuaire);
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
 
 		// When
-		SA.inscrire("Jacques", "Paul");
+		sa.inscrire("Jacques", "Paul");
 
 		// Then
 		fail();
@@ -92,15 +93,88 @@ public class InscriptionTest {
 		Mockito.when(annuaire.recupererCompteParIdentifiant("Jacques"))
 				.thenReturn(null);
 		Mockito.when(annuaire.creerCompte("Jacques", "Paul")).thenReturn(true);
-		ServiceAuthentification SA = new ServiceAuthentification(annuaire);
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
 
 		// When
-		boolean test = SA.inscrire("Jacques", "Paul");
+		boolean test = sa.inscrire("Jacques", "Paul");
 
 		// Then
 		assertTrue(test);
 
 	}
-	
-	
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testDesinscrireIdNull() throws CompteInexistantException {
+		System.out.println("Début du test : testDesinscrireIdNull()");
+		// Given
+		this.annuaire = Mockito.mock(IAnnuaire.class);
+
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
+
+		// When
+		sa.desinscrire(null);
+
+		// Then
+		fail();
+	}
+
+	@Test(expected = CompteInexistantException.class)
+	public void testDesinscrireCompteNonExistant()
+			throws CompteInexistantException {
+		System.out
+				.println("Début du test : testDesinscrireCompteNonExistant()");
+		// Given
+		this.annuaire = Mockito.mock(IAnnuaire.class);
+
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
+
+		// When
+		Mockito.when(annuaire.recupererCompteParIdentifiant("Jacques"))
+				.thenReturn(null);
+		sa.desinscrire("Jacques");
+
+		// Then
+		fail();
+	}
+
+	@Test
+	public void testDesinscrireCompteExistantSuppressionOK()
+			throws CompteInexistantException {
+		System.out
+				.println("Début du test : testDesinscrireCompteExistantSuppressionOK()");
+		// Given
+		this.annuaire = Mockito.mock(IAnnuaire.class);
+
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
+
+		// When
+		Mockito.when(annuaire.recupererCompteParIdentifiant("Jacques"))
+				.thenReturn(new Compte("Jacques"));
+		Mockito.when(annuaire.supprimerCompte("Jacques")).thenReturn(true);
+		boolean res = sa.desinscrire("Jacques");
+
+		// Then
+		assertTrue(res);
+	}
+
+	@Test
+	public void testDesinscrireCompteExistantProblemeSuppression()
+			throws CompteInexistantException {
+		System.out
+				.println("Début du test : testDesinscrireCompteExistantProblemeSuppression()");
+		// Given
+		this.annuaire = Mockito.mock(IAnnuaire.class);
+
+		ServiceAuthentification sa = new ServiceAuthentification(annuaire);
+
+		// When
+		Mockito.when(annuaire.recupererCompteParIdentifiant("Jacques"))
+				.thenReturn(new Compte("Jacques"));
+		Mockito.when(annuaire.supprimerCompte("Jacques")).thenReturn(false);
+		boolean res = sa.desinscrire("Jacques");
+
+		// Then
+		assertFalse(res);
+	}
+
 }
